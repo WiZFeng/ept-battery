@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2c5282">
+<title>Battery Information Center | Shenzhen EPT Battery Co., Ltd.</title>
+<style>
+  :root{--blue-800:#2c5282;--blue-600:#4a7ba7;--blue-100:#e8f0f8;--blue-50:#f3f8fc;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;background:#eef2f6;color:var(--ink);font-size:15px;line-height:1.6;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 30px rgba(15,40,70,.08);}
+  .hero{background:linear-gradient(135deg,#1c3d5a 0%,#2c5282 45%,#4a7ba7 100%);color:#fff;padding:36px 22px 30px;text-align:center;}
+  .hero h1{font-size:21px;margin:0 0 8px;font-weight:700;}
+  .hero p{margin:0;font-size:13px;color:rgba(255,255,255,.82);}
+  main{padding:20px 18px 30px;}
+  h2{font-size:15px;color:#111827;margin:0 0 14px;font-weight:700;}
+  a.card{
+    display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+    border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin-bottom:12px;
+    background:#fff;transition:background .15s;
+  }
+  a.card:active{background:var(--blue-50);}
+  .thumb{
+    flex:0 0 auto;width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,var(--blue-800),var(--blue-600));
+    color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    letter-spacing:.5px;
+  }
+  .card .txt{flex:1;min-width:0;}
+  .card .t{font-size:14.5px;font-weight:600;color:#111827;margin-bottom:3px;}
+  .card .s{font-size:12.5px;color:var(--muted);}
+  .card .arrow{flex:0 0 auto;color:#b9c5d3;font-size:18px;}
+  footer{padding:0 18px 34px;font-size:12px;color:#8a94a3;text-align:center;line-height:1.8;}
+  .hint{background:var(--blue-50);border-left:3px solid var(--blue-600);border-radius:0 8px 8px 0;padding:10px 13px;font-size:12.5px;color:#334155;margin-top:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>Battery Information Center</h1>
+    <p>EU Regulation (EU) 2023/1542 &middot; Product information &amp; Declaration of Conformity</p>
+  </header>
+
+  <main>
+    <h2>Model list / 型号列表</h2>
+
+    <a class="card" href="di100-aa-7.2v.html">
+      <div class="thumb">Ni-MH</div>
+      <div class="txt">
+        <div class="t">Ni-MH Rechargeable Battery &mdash; AA 1000mAh</div>
+        <div class="s">7.2V / 7.2Wh &middot; DI100 &middot; Portable Battery</div>
+      </div>
+      <div class="arrow">&rsaquo;</div>
+    </a>
+
+    <div class="hint">新增型号：在本目录增加一个 <b>型号.html</b> 页面，然后在本页复制一张卡片、改一下链接和文字即可。</div>
+  </main>
+
+  <footer>
+    Shenzhen EPT Battery Co., Ltd. &middot; www.ept-battery.com<br>
+    Building 3, Huancheng Industrial Park, No.41 Dalang North Road, Dalang Street,<br>
+    Longhua District, Shenzhen, Guangdong, P.R.China &middot; 518109
+  </footer>
+</div>
+</body>
+</html>
