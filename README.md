@@ -10,6 +10,7 @@
 | DI100 Ni-MH AA 1000mAh 7.2V | https://wizfeng.github.io/ept-battery/di100-aa-7.2v.html |
 | 14500 Li-ion 800mAh 7.4V (2S1P) | https://wizfeng.github.io/ept-battery/14500-800mah-7.4v.html |
 | 0620 Ni-MH AAA 600mAh 3.6V (3S) | https://wizfeng.github.io/ept-battery/0620-aaa600mah-3.6v.html |
+| DI300 Ni-MH AA 1000mAh 7.2V | https://wizfeng.github.io/ept-battery/di300-aa-7.2v.html |
 
 ## 维护规则
 
