@@ -3,363 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#2c5282">
-<title>Battery Product Information - Ni-MH AA 1000mAh 7.2V | EPT</title>
-<meta name="description" content="EU Battery Regulation (EU) 2023/1542 product information, EU Declaration of Conformity and waste battery management for Shenzhen EPT Battery rechargeable Ni-MH battery AA 1000mAh 7.2V.">
+<meta name="theme-color" content="#1c3d5a">
+<title>Battery Label - Ni-MH AA 1000mAh 7.2V | EPT</title>
+<meta name="description" content="EU Battery Regulation (EU) 2023/1542 battery label and product information for Shenzhen EPT Battery rechargeable Ni-MH battery AA 1000mAh 7.2V.">
 <style>
   :root{
-    --blue-900:#1c3d5a;
-    --blue-800:#2c5282;
-    --blue-700:#356394;
-    --blue-600:#4a7ba7;
-    --blue-100:#e8f0f8;
-    --blue-50:#f3f8fc;
-    --ink:#1f2937;
-    --ink-soft:#374151;
-    --muted:#6b7280;
-    --line:#e5e7eb;
-    --radius:14px;
+    --blue-900:#1c3d5a; --blue-800:#2c5282; --blue-700:#356394; --blue-600:#4a7ba7;
+    --blue-100:#e8f0f8; --blue-50:#f3f8fc;
+    --ink:#1f2937; --ink-soft:#374151; --muted:#6b7280; --line:#e5e7eb; --radius:14px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);
-    background:#eef2f6;
-    line-height:1.6;
-    font-size:15px;
-    -webkit-font-smoothing:antialiased;
+    color:var(--ink); background:#eef2f6; line-height:1.6; font-size:15px; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:720px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 30px rgba(15,40,70,.08);}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    background:linear-gradient(135deg,#1c3d5a 0%,#2c5282 45%,#4a7ba7 100%);
-    color:#fff;
-    padding:34px 22px 30px;
-    text-align:center;
+  .page{max-width:560px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 30px rgba(15,40,70,.08);padding-bottom:24px;}
+  /* 标签图：满屏呈现，扫码即像打开一张图片 */
+  .label-img{display:block;width:100%;height:auto;}
+  .tip{text-align:center;font-size:12.5px;color:var(--muted);margin:10px 0 4px;}
+  /* 折叠：完整合规信息 */
+  details.more{margin:6px 14px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--blue-50);}
+  details.more>summary{
+    cursor:pointer;list-style:none;padding:13px 16px;font-weight:700;color:var(--blue-800);font-size:14.5px;
+    display:flex;align-items:center;gap:8px;
   }
-  .hero .brand{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    color:rgba(255,255,255,.78);
-    border:1px solid rgba(255,255,255,.28);
-    border-radius:999px;padding:5px 14px;margin-bottom:16px;
-  }
-  .hero h1{
-    font-size:23px;line-height:1.3;margin:0 0 12px;font-weight:700;letter-spacing:.2px;
-  }
-  .hero .sub{
-    font-size:13.5px;color:rgba(255,255,255,.85);margin:0;
-  }
-  .hero .sub b{color:#fff;font-weight:600;}
-  .hero .meta{
-    margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2);
-    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
-  }
-  .chip{
-    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);
-    border-radius:999px;padding:4px 12px;font-size:12px;color:#fff;white-space:nowrap;
-  }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);
-    backdrop-filter:saturate(180%) blur(8px);
-    border-bottom:1px solid var(--line);
-    display:flex;gap:6px;padding:9px 12px;overflow-x:auto;
-  }
-  nav a{
-    flex:0 0 auto;text-decoration:none;font-size:12.5px;font-weight:600;
-    color:var(--blue-800);background:var(--blue-50);
-    border:1px solid #d7e5f2;border-radius:999px;padding:6px 13px;
-  }
-  nav a:active{background:var(--blue-100);}
-
-  /* ---------- SECTIONS ---------- */
-  section{padding:22px 18px 6px;}
-  .sec-head{
-    background:linear-gradient(120deg,var(--blue-800),var(--blue-600));
-    color:#fff;border-radius:10px;
-    padding:12px 16px;margin:0 0 18px;
-    font-size:16px;font-weight:700;letter-spacing:.3px;
-  }
-  .item{margin:0 0 22px;}
-  .item-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:10px;}
-  .num{
-    flex:0 0 auto;width:26px;height:26px;border-radius:50%;
-    background:var(--blue-100);color:var(--blue-800);
-    font-size:13px;font-weight:700;
-    display:flex;align-items:center;justify-content:center;
-    margin-top:1px;
-  }
-  .item-head h3{margin:0;font-size:15.5px;font-weight:700;color:#111827;line-height:1.5;}
-
+  details.more>summary::-webkit-details-marker{display:none;}
+  details.more>summary::before{content:"▸";transition:transform .2s;color:var(--blue-600);}
+  details.more[open]>summary::before{transform:rotate(90deg);}
+  details.more .body{padding:4px 16px 18px;background:#fff;}
+  .sec-head{background:linear-gradient(120deg,var(--blue-800),var(--blue-600));color:#fff;border-radius:10px;padding:11px 15px;margin:14px 0 16px;font-size:15px;font-weight:700;}
+  .item{margin:0 0 20px;}
+  .item-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:9px;}
+  .num{flex:0 0 auto;width:25px;height:25px;border-radius:50%;background:var(--blue-100);color:var(--blue-800);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .item-head h3{margin:0;font-size:15px;font-weight:700;color:#111827;line-height:1.5;}
   .kv{border-top:1px solid var(--line);}
-  .kv .row{
-    display:flex;gap:14px;padding:11px 2px;border-bottom:1px solid var(--line);
-  }
-  .kv dt{
-    flex:0 0 38%;max-width:190px;color:var(--muted);font-size:13.5px;font-weight:500;
-  }
-  .kv dd{margin:0;flex:1;font-size:14px;color:var(--ink-soft);word-break:break-word;}
-  .kv dd a{color:var(--blue-800);text-decoration:none;border-bottom:1px solid rgba(44,82,130,.28);}
-
-  p.body{margin:0;font-size:14px;color:var(--ink-soft);}
-  .note{
-    background:var(--blue-50);border-left:3px solid var(--blue-600);
-    border-radius:0 8px 8px 0;padding:11px 14px;margin-top:10px;
-    font-size:13.5px;color:#334155;
-  }
-  ol.list{margin:0;padding-left:20px;font-size:14px;color:var(--ink-soft);}
-  ol.list li{margin-bottom:6px;}
-
-  /* ---------- MARKS ---------- */
-  .marks{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;}
-  .mark{
-    display:flex;align-items:center;gap:10px;
-    border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fcfdfe;
-  }
-  .mark svg{flex:0 0 auto;display:block;}
-  .mark span{font-size:12.5px;color:var(--muted);}
-
-  /* ---------- SIGN ---------- */
-  .sign{
-    margin-top:12px;border:1px dashed #c9d8e6;border-radius:10px;
-    background:#fbfdff;padding:14px 16px;
-  }
-  .sign .row{display:flex;gap:12px;font-size:13.5px;padding:3px 0;}
-  .sign .row b{flex:0 0 128px;color:var(--muted);font-weight:500;}
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    margin-top:14px;padding:20px 18px 30px;border-top:1px solid var(--line);
-    font-size:12px;color:#8a94a3;text-align:center;line-height:1.8;
-  }
+  .kv .row{display:flex;gap:14px;padding:10px 2px;border-bottom:1px solid var(--line);}
+  .kv dt{flex:0 0 38%;max-width:185px;color:var(--muted);font-size:13px;font-weight:500;}
+  .kv dd{margin:0;flex:1;font-size:13.5px;color:var(--ink-soft);word-break:break-word;}
+  .kv dd a{color:var(--blue-800);text-decoration:none;}
+  p.body{margin:0;font-size:13.5px;color:var(--ink-soft);}
+  .note{background:var(--blue-50);border-left:3px solid var(--blue-600);border-radius:0 8px 8px 0;padding:10px 13px;margin-top:9px;font-size:13px;color:#334155;}
+  ol.list{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);} ol.list li{margin-bottom:6px;}
+  .sign{margin-top:10px;border:1px dashed #c9d8e6;border-radius:10px;background:#fbfdff;padding:13px 15px;}
+  .sign .row{display:flex;gap:10px;font-size:13px;padding:3px 0;} .sign .row b{flex:0 0 120px;color:var(--muted);font-weight:500;}
+  .marks{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}
+  .mark{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:10px;padding:9px 13px;background:#fcfdfe;}
+  .mark span{font-size:12px;color:var(--muted);}
+  footer{margin-top:16px;padding:18px 16px 4px;border-top:1px solid var(--line);font-size:11.5px;color:#8a94a3;text-align:center;line-height:1.8;}
   footer b{color:#6b7280;}
-  @media (max-width:400px){
-    .hero h1{font-size:20px;}
-    .kv dt{flex-basis:42%;}
-    .sign .row{flex-direction:column;gap:0;}
-    .sign .row b{flex-basis:auto;}
-  }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
-  <header class="hero">
-    <div class="brand">Battery Information</div>
-    <h1>Battery Product Information</h1>
-    <p class="sub">Rechargeable Ni-MH Battery &nbsp;|&nbsp; Model: <b>AA 1000mAh</b> &nbsp;|&nbsp; <b>7.2V / 7.2Wh</b></p>
-    <div class="meta">
-      <span class="chip">Regulation (EU) 2023/1542</span>
-      <span class="chip">Portable Battery</span>
-      <span class="chip">Shenzhen EPT Battery Co., Ltd.</span>
-    </div>
-  </header>
+  <img class="label-img" src="di300-label.png" alt="EPT Ni-MH AA 1000mAh 7.2V battery label">
 
-  <nav>
-    <a href="#s1">I. General Information</a>
-    <a href="#s2">II. EU Declaration of Conformity</a>
-    <a href="#s3">III. Waste Battery Management</a>
-  </nav>
+  <p class="tip">↑ 电池标签贴纸 · 长按图片可保存到手机</p>
 
-  <!-- ============ I ============ -->
-  <section id="s1">
-    <div class="sec-head">I. General Information of Batteries</div>
+  <details class="more">
+    <summary>查看完整合规信息（General Info / EU DoC / Waste Battery）</summary>
+    <div class="body">
 
-    <div class="item">
-      <div class="item-head"><div class="num">1</div><h3>Manufacturer Information</h3></div>
-      <dl class="kv">
-        <div class="row"><dt>Battery manufacturer</dt><dd>Shenzhen EPT Battery Co., Ltd.</dd></div>
-        <div class="row"><dt>Trademark</dt><dd>EPT</dd></div>
-        <div class="row"><dt>Manufacturer's address</dt><dd>Building 3, Huancheng Industrial Park, No.41 Dalang North Road, Dalang Street, Longhua District, Shenzhen City, Guangdong Province, P.R.China</dd></div>
-        <div class="row"><dt>E-mail</dt><dd><a href="mailto:info@ept-battery.com">info@ept-battery.com</a></dd></div>
-        <div class="row"><dt>Postal Code</dt><dd>518109</dd></div>
-        <div class="row"><dt>Website</dt><dd><a href="https://www.ept-battery.com" target="_blank" rel="noopener">www.ept-battery.com</a></dd></div>
-      </dl>
-    </div>
+      <!-- ============ I ============ -->
+      <div class="sec-head">I. General Information of Batteries</div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">2</div><h3>Battery Category &amp; Identification</h3></div>
-      <dl class="kv">
-        <div class="row"><dt>Battery Category</dt><dd>Portable Battery</dd></div>
-        <div class="row"><dt>Product name</dt><dd>Ni-MH Rechargeable Battery</dd></div>
-        <div class="row"><dt>Model</dt><dd>AA 1000mAh</dd></div>
-        <div class="row"><dt>Nominal voltage</dt><dd>7.2V</dd></div>
-        <div class="row"><dt>Rated capacity</dt><dd>1000mAh</dd></div>
-        <div class="row"><dt>Rated energy</dt><dd>7.2Wh</dd></div>
-        <div class="row"><dt>Batch number / serial number</dt><dd>Batch number: same as date of manufacture (marked on battery body, e.g. YYYYMMDD)</dd></div>
-      </dl>
-    </div>
+      <div class="item">
+        <div class="item-head"><div class="num">1</div><h3>Manufacturer Information</h3></div>
+        <dl class="kv">
+          <div class="row"><dt>Battery manufacturer</dt><dd>Shenzhen EPT Battery Co., Ltd.</dd></div>
+          <div class="row"><dt>Trademark</dt><dd>EPT</dd></div>
+          <div class="row"><dt>Manufacturer's address</dt><dd>Building 3, Huancheng Industrial Park, No.41 Dalang North Road, Dalang Street, Longhua District, Shenzhen City, Guangdong Province, P.R.China</dd></div>
+          <div class="row"><dt>E-mail</dt><dd><a href="mailto:info@ept-battery.com">info@ept-battery.com</a></dd></div>
+          <div class="row"><dt>Postal Code</dt><dd>518109</dd></div>
+          <div class="row"><dt>Website</dt><dd><a href="https://www.ept-battery.com" target="_blank" rel="noopener">www.ept-battery.com</a></dd></div>
+        </dl>
+      </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">3</div><h3>Place of Manufacture</h3></div>
-      <p class="body">Shenzhen, China</p>
-    </div>
+      <div class="item">
+        <div class="item-head"><div class="num">2</div><h3>Battery Category &amp; Identification</h3></div>
+        <dl class="kv">
+          <div class="row"><dt>Battery Category</dt><dd>Portable Battery</dd></div>
+          <div class="row"><dt>Product name</dt><dd>Ni-MH Rechargeable Battery</dd></div>
+          <div class="row"><dt>Model</dt><dd>AA 1000mAh</dd></div>
+          <div class="row"><dt>Nominal voltage</dt><dd>7.2V</dd></div>
+          <div class="row"><dt>Rated capacity</dt><dd>1000mAh</dd></div>
+          <div class="row"><dt>Rated energy</dt><dd>7.2Wh</dd></div>
+          <div class="row"><dt>Batch number / serial number</dt><dd>Batch number: same as date of manufacture (marked on battery body, e.g. YYYYMMDD)</dd></div>
+        </dl>
+      </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">4</div><h3>Date of Manufacture</h3></div>
-      <p class="body">Refer to the production date marked on the battery body, e.g. YYYYMMDD</p>
-    </div>
+      <div class="item"><div class="item-head"><div class="num">3</div><h3>Place of Manufacture</h3></div><p class="body">Shenzhen, China</p></div>
+      <div class="item"><div class="item-head"><div class="num">4</div><h3>Date of Manufacture</h3></div><p class="body">Refer to the production date marked on the battery body, e.g. YYYYMMDD</p></div>
+      <div class="item"><div class="item-head"><div class="num">5</div><h3>Weight</h3></div><p class="body">Approx. 188&nbsp;g</p></div>
+      <div class="item"><div class="item-head"><div class="num">6</div><h3>Capacity</h3></div><p class="body">1000&nbsp;mAh</p></div>
+      <div class="item"><div class="item-head"><div class="num">7</div><h3>Chemical Composition</h3></div><p class="body">Ni-MH (Nickel-Metal Hydride)</p></div>
+      <div class="item"><div class="item-head"><div class="num">8</div><h3>Hazardous Substances (excl. Hg / Cd / Pb)</h3></div><p class="body">None of the hazardous substances other than mercury, cadmium or lead are present in the battery above the concentration limits set out in Regulation (EC) No 1907/2006 (REACH) and Regulation (EC) No 1272/2008 (CLP).</p></div>
+      <div class="item"><div class="item-head"><div class="num">9</div><h3>Usable Extinguishing Agent</h3></div><p class="body">Dry powder fire extinguishers, Water-based (water mist) fire extinguisher.</p></div>
+      <div class="item"><div class="item-head"><div class="num">10</div><h3>Critical Raw Materials &gt; 0.1% w/w</h3></div><p class="body">Elements from the EU Critical Raw Materials list (Regulation (EU) 2024/1252) with mass fraction &gt; 0.1% w/w: Nickel (Ni), Rare earth elements (La, Ce), Cobalt (Co), Zinc (Zn), Manganese (Mn), etc.</p></div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">5</div><h3>Weight</h3></div>
-      <p class="body">Approx. 188&nbsp;g</p>
-    </div>
+      <!-- ============ II ============ -->
+      <div class="sec-head">II. EU Declaration of Conformity</div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">6</div><h3>Capacity</h3></div>
-      <p class="body">1000&nbsp;mAh</p>
-    </div>
+      <div class="item"><div class="item-head"><div class="num">1</div><h3>Battery Category &amp; Identification</h3></div>
+        <dl class="kv">
+          <div class="row"><dt>Battery Category</dt><dd>Portable Battery</dd></div>
+          <div class="row"><dt>Product name</dt><dd>Ni-MH Rechargeable Battery</dd></div>
+          <div class="row"><dt>Model</dt><dd>AA 1000mAh</dd></div>
+          <div class="row"><dt>Nominal voltage</dt><dd>7.2V</dd></div>
+          <div class="row"><dt>Rated capacity</dt><dd>1000mAh</dd></div>
+          <div class="row"><dt>Rated energy</dt><dd>7.2Wh</dd></div>
+          <div class="row"><dt>Batch number / serial number</dt><dd>Batch number: same as date of manufacture (marked on battery body, e.g. YYYYMMDD)</dd></div>
+        </dl>
+      </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">7</div><h3>Chemical Composition</h3></div>
-      <p class="body">Ni-MH (Nickel-Metal Hydride)</p>
-    </div>
+      <div class="item"><div class="item-head"><div class="num">2</div><h3>Manufacturer &amp; Importer Information</h3></div>
+        <dl class="kv">
+          <div class="row"><dt>Battery manufacturer</dt><dd>Shenzhen EPT Battery Co., Ltd.</dd></div>
+          <div class="row"><dt>Trademark</dt><dd>EPT</dd></div>
+          <div class="row"><dt>Manufacturer's address</dt><dd>Building 3, Huancheng Industrial Park, No.41 Dalang North Road, Dalang Street, Longhua District, Shenzhen City, Guangdong Province, P.R.China</dd></div>
+          <div class="row"><dt>E-mail</dt><dd><a href="mailto:info@ept-battery.com">info@ept-battery.com</a></dd></div>
+          <div class="row"><dt>Postal Code</dt><dd>518109</dd></div>
+          <div class="row"><dt>Website</dt><dd><a href="https://www.ept-battery.com" target="_blank" rel="noopener">www.ept-battery.com</a></dd></div>
+          <div class="row"><dt>Importer information</dt><dd>This battery is incorporated into the end product. The importer of the end product shall be identified on the end product's documentation.</dd></div>
+        </dl>
+      </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">8</div><h3>Hazardous Substances (excl. Hg / Cd / Pb)</h3></div>
-      <p class="body">None of the hazardous substances other than mercury, cadmium or lead are present in the battery above the concentration limits set out in Regulation (EC) No 1907/2006 (REACH) and Regulation (EC) No 1272/2008 (CLP).</p>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">9</div><h3>Usable Extinguishing Agent</h3></div>
-      <p class="body">Dry powder fire extinguishers, Water-based (water mist) fire extinguisher.</p>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">10</div><h3>Critical Raw Materials &gt; 0.1% w/w</h3></div>
-      <p class="body">Elements from the EU Critical Raw Materials list (Regulation (EU) 2024/1252) with mass fraction &gt; 0.1% w/w: Nickel (Ni), Rare earth elements (La, Ce), Cobalt (Co), Zinc (Zn), Manganese (Mn), etc.</p>
-    </div>
-  </section>
-
-  <!-- ============ II ============ -->
-  <section id="s2">
-    <div class="sec-head">II. EU Declaration of Conformity</div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">1</div><h3>Battery Category &amp; Identification</h3></div>
-      <dl class="kv">
-        <div class="row"><dt>Battery Category</dt><dd>Portable Battery</dd></div>
-        <div class="row"><dt>Product name</dt><dd>Ni-MH Rechargeable Battery</dd></div>
-        <div class="row"><dt>Model</dt><dd>AA 1000mAh</dd></div>
-        <div class="row"><dt>Nominal voltage</dt><dd>7.2V</dd></div>
-        <div class="row"><dt>Rated capacity</dt><dd>1000mAh</dd></div>
-        <div class="row"><dt>Rated energy</dt><dd>7.2Wh</dd></div>
-        <div class="row"><dt>Batch number / serial number</dt><dd>Batch number: same as date of manufacture (marked on battery body, e.g. YYYYMMDD)</dd></div>
-      </dl>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">2</div><h3>Manufacturer &amp; Importer Information</h3></div>
-      <dl class="kv">
-        <div class="row"><dt>Battery manufacturer</dt><dd>Shenzhen EPT Battery Co., Ltd.</dd></div>
-        <div class="row"><dt>Trademark</dt><dd>EPT</dd></div>
-        <div class="row"><dt>Manufacturer's address</dt><dd>Building 3, Huancheng Industrial Park, No.41 Dalang North Road, Dalang Street, Longhua District, Shenzhen City, Guangdong Province, P.R.China</dd></div>
-        <div class="row"><dt>E-mail</dt><dd><a href="mailto:info@ept-battery.com">info@ept-battery.com</a></dd></div>
-        <div class="row"><dt>Postal Code</dt><dd>518109</dd></div>
-        <div class="row"><dt>Website</dt><dd><a href="https://www.ept-battery.com" target="_blank" rel="noopener">www.ept-battery.com</a></dd></div>
-        <div class="row"><dt>Importer information</dt><dd>This battery is incorporated into the end product. The importer of the end product shall be identified on the end product's documentation.</dd></div>
-      </dl>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">3</div><h3>Statement of Conformity</h3></div>
-      <p class="body">The above referenced product is in conformity with the applicable requirements of <b>Regulation (EU) 2023/1542</b>, including Article 6 (restricted substances), Article 13 (labeling and marking), and Annex I (mercury, cadmium and lead content limits). This declaration of conformity is issued under the sole responsibility of the manufacturer (Shenzhen EPT Battery Co., Ltd.).</p>
-      <div class="marks">
-        <div class="mark">
-          <svg width="34" height="30" viewBox="0 0 34 30" aria-label="CE marking">
-            <path d="M9.6 6.2a8.6 8.6 0 0 0 0 13.6" fill="none" stroke="#1f2937" stroke-width="2.4" stroke-linecap="round"/>
-            <path d="M22.4 6.2a8.6 8.6 0 0 0 0 13.6" fill="none" stroke="#1f2937" stroke-width="2.4" stroke-linecap="round"/>
-            <path d="M24.6 4.6v16.8" fill="none" stroke="#1f2937" stroke-width="1.3"/>
-          </svg>
-          <span>CE Conformity Marking</span>
-        </div>
-        <div class="mark">
-          <svg width="30" height="34" viewBox="0 0 30 34" aria-label="Separate collection symbol">
-            <path d="M17.6 2.6h6.9a2 2 0 0 1 2 2v6.9" fill="none" stroke="#1f2937" stroke-width="1.6"/>
-            <path d="M26.5 2.6 3.4 30.2" stroke="#1f2937" stroke-width="1.6" fill="none"/>
-            <path d="M8.6 15.9 4.3 23.4h6.2" fill="none" stroke="#1f2937" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M15.7 15.6l3.1 3.1M18.8 15.6l-3.1 3.1" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-          </svg>
-          <span>Separate collection (WEEE)</span>
+      <div class="item"><div class="item-head"><div class="num">3</div><h3>Statement of Conformity</h3></div>
+        <p class="body">The above referenced product is in conformity with the applicable requirements of <b>Regulation (EU) 2023/1542</b>, including Article 6 (restricted substances), Article 13 (labeling and marking), and Annex I (mercury, cadmium and lead content limits). This declaration of conformity is issued under the sole responsibility of the manufacturer (Shenzhen EPT Battery Co., Ltd.).</p>
+        <div class="marks">
+          <div class="mark"><span style="font-weight:800;font-size:22px;color:#1f2937;">CE</span><span>CE Conformity Marking</span></div>
+          <div class="mark"><span style="font-weight:800;font-size:15px;color:#1f2937;">♻ WEEE</span><span>Separate collection</span></div>
         </div>
       </div>
-    </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">4</div><h3>Object of the Declaration</h3></div>
-      <p class="body">Object of the declaration (description of the battery and identification allowing traceability, and which may, where appropriate, include an image of the battery):</p>
-      <dl class="kv" style="margin-top:10px;">
-        <div class="row"><dt>Product</dt><dd>Rechargeable Ni-MH Battery, Model AA 1000mAh, 7.2V / 7.2Wh / 1000mAh</dd></div>
-        <div class="row"><dt>Manufacturer</dt><dd>Shenzhen EPT Battery Co., Ltd. (Trademark: EPT)</dd></div>
-        <div class="row"><dt>Traceability</dt><dd>Batch number = date of manufacture, marked on the battery body (e.g. YYYYMMDD)</dd></div>
-      </dl>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">5</div><h3>Applicable Union Acts</h3></div>
-      <p class="body">The object of the declaration described in point 4 is in conformity with the relevant legislation (reference to the other Union acts applied):</p>
-      <ol class="list" style="margin-top:8px;">
-        <li>Annex I of Regulation (EU) 2023/1542 &mdash; Mercury, Cadmium and Lead Content Limits.</li>
-        <li>Article 13 and Annex VI of Regulation (EU) 2023/1542 &mdash; Labeling, marking and information requirements.</li>
-        <li>The restrictions set out in Annex XVII to Regulation (EC) No 1907/2006 (REACH).</li>
-      </ol>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">6</div><h3>Harmonised Standards Applied</h3></div>
-      <p class="body">References to the relevant harmonised standards or the common specifications used, or references to the other technical specifications in relation to which conformity is declared:</p>
-      <ol class="list" style="margin-top:8px;">
-        <li>EN IEC 62133-1:2017 &mdash; Safety requirements for portable sealed secondary cells and batteries for portable applications &mdash; Part 1: Nickel systems.</li>
-        <li>EN IEC 61951-2:2017 &mdash; Secondary cells and batteries containing alkaline or other non-acid electrolytes &mdash; Secondary sealed cells and batteries for portable applications &mdash; Part 2: Nickel-metal hydride.</li>
-        <li>GB/T 22084.2-2024 &mdash; Additional reference, Chinese national standard.</li>
-      </ol>
-    </div>
-
-    <div class="item">
-      <div class="item-head"><div class="num">7</div><h3>Additional Information</h3></div>
-      <div class="sign">
-        <div class="row"><b>Place of issue</b><span>Shenzhen, Guangdong, China</span></div>
-        <div class="row"><b>Date of issue</b><span>2026-10-26</span></div>
-        <div class="row"><b>Name</b><span>Evan Xiong (Xiong Huangwen)</span></div>
-        <div class="row"><b>Function</b><span>Quality Director</span></div>
-        <div class="row"><b>Signature</b><span>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</span></div>
+      <div class="item"><div class="item-head"><div class="num">4</div><h3>Object of the Declaration</h3></div>
+        <p class="body">Object of the declaration (description of the battery and identification allowing traceability):</p>
+        <dl class="kv" style="margin-top:9px;">
+          <div class="row"><dt>Product</dt><dd>Rechargeable Ni-MH Battery, Model AA 1000mAh, 7.2V / 7.2Wh / 1000mAh</dd></div>
+          <div class="row"><dt>Manufacturer</dt><dd>Shenzhen EPT Battery Co., Ltd. (Trademark: EPT)</dd></div>
+          <div class="row"><dt>Traceability</dt><dd>Batch number = date of manufacture, marked on the battery body (e.g. YYYYMMDD)</dd></div>
+        </dl>
       </div>
-      <div class="note">Signed for and on behalf of the manufacturer. The EU Declaration of Conformity and technical documentation shall be kept for 10 years after the last battery of the model has been placed on the market (Article 17, Annex VIII).</div>
-    </div>
-  </section>
 
-  <!-- ============ III ============ -->
-  <section id="s3">
-    <div class="sec-head">III. Waste Battery Management</div>
+      <div class="item"><div class="item-head"><div class="num">5</div><h3>Applicable Union Acts</h3></div>
+        <ol class="list" style="margin-top:6px;">
+          <li>Annex I of Regulation (EU) 2023/1542 — Mercury, Cadmium and Lead Content Limits.</li>
+          <li>Article 13 and Annex VI of Regulation (EU) 2023/1542 — Labeling, marking and information requirements.</li>
+          <li>The restrictions set out in Annex XVII to Regulation (EC) No 1907/2006 (REACH).</li>
+        </ol>
+      </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">1</div><h3>Description of Hazardous Substances</h3></div>
-      <p class="body">This battery does not contain mercury, cadmium or lead exceeding the regulatory limits. The alkaline electrolyte (potassium hydroxide) contained is corrosive and may cause irritation if leaked. Do not short-circuit, disassemble, puncture or throw it into the fire.</p>
-      <div class="marks" style="margin-top:12px;">
-        <div class="mark">
-          <svg width="30" height="34" viewBox="0 0 30 34" aria-label="Separate collection symbol">
-            <path d="M17.6 2.6h6.9a2 2 0 0 1 2 2v6.9" fill="none" stroke="#1f2937" stroke-width="1.6"/>
-            <path d="M26.5 2.6 3.4 30.2" stroke="#1f2937" stroke-width="1.6" fill="none"/>
-            <path d="M8.6 15.9 4.3 23.4h6.2" fill="none" stroke="#1f2937" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M15.7 15.6l3.1 3.1M18.8 15.6l-3.1 3.1" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-          </svg>
-          <span>The battery is collected separately</span>
+      <div class="item"><div class="item-head"><div class="num">6</div><h3>Harmonised Standards Applied</h3></div>
+        <ol class="list" style="margin-top:6px;">
+          <li>EN IEC 62133-1:2017 — Safety requirements for portable sealed secondary cells and batteries for portable applications — Part 1: Nickel systems.</li>
+          <li>EN IEC 61951-2:2017 — Secondary cells and batteries containing alkaline or other non-acid electrolytes — Secondary sealed cells and batteries for portable applications — Part 2: Nickel-metal hydride.</li>
+          <li>GB/T 22084.2-2024 — Additional reference, Chinese national standard.</li>
+        </ol>
+      </div>
+
+      <div class="item"><div class="item-head"><div class="num">7</div><h3>Additional Information</h3></div>
+        <div class="sign">
+          <div class="row"><b>Place of issue</b><span>Shenzhen, Guangdong, China</span></div>
+          <div class="row"><b>Date of issue</b><span>2026-10-26</span></div>
+          <div class="row"><b>Name</b><span>Evan Xiong (Xiong Huangwen)</span></div>
+          <div class="row"><b>Function</b><span>Quality Director</span></div>
+          <div class="row"><b>Signature</b><span>——————</span></div>
+        </div>
+        <div class="note">Signed for and on behalf of the manufacturer. The EU Declaration of Conformity and technical documentation shall be kept for 10 years after the last battery of the model has been placed on the market (Article 17, Annex VIII).</div>
+      </div>
+
+      <!-- ============ III ============ -->
+      <div class="sec-head">III. Waste Battery Management</div>
+
+      <div class="item"><div class="item-head"><div class="num">1</div><h3>Description of Hazardous Substances</h3></div>
+        <p class="body">This battery does not contain mercury, cadmium or lead exceeding the regulatory limits. The alkaline electrolyte (potassium hydroxide) contained is corrosive and may cause irritation if leaked. Do not short-circuit, disassemble, puncture or throw it into the fire.</p>
+        <div class="marks" style="margin-top:10px;">
+          <div class="mark"><span style="font-weight:800;font-size:15px;color:#1f2937;">♻ WEEE</span><span>The battery is collected separately</span></div>
         </div>
       </div>
-    </div>
 
-    <div class="item">
-      <div class="item-head"><div class="num">2</div><h3>Correct Classification and Placement Guidelines</h3></div>
-      <ol class="list">
-        <li>Do not discard in household garbage or mixed garbage.</li>
-        <li>Please place the used batteries in the designated battery recycling bins or return them to the retailer's recycling points.</li>
-      </ol>
+      <div class="item"><div class="item-head"><div class="num">2</div><h3>Correct Classification and Placement Guidelines</h3></div>
+        <ol class="list">
+          <li>Do not discard in household garbage or mixed garbage.</li>
+          <li>Please place the used batteries in the designated battery recycling bins or return them to the retailer's recycling points.</li>
+        </ol>
+      </div>
+
     </div>
-  </section>
+  </details>
 
   <footer>
     <b>Shenzhen EPT Battery Co., Ltd.</b><br>
