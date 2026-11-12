@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- cache-buster: 1794464099 -->
+<!-- cache-buster: 1794467315 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>0296 AA1300mAh×3 3.6V</title>
@@ -99,15 +99,32 @@ footer{text-align:center; color:var(--muted); font-size:.85rem; padding:10px 0 0
 .lbtn.playing{background:#b03a2e;border-color:#b03a2e}
 .lbtn.loading{opacity:.7}
 .lbtn[hidden]{display:none}
+.rbtn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:7px 9px;
+ font-size:.8rem;font-weight:600;font-family:inherit;cursor:pointer;min-width:50px;line-height:1}
+.rbtn[hidden]{display:none}
+.rbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:430px){
+ .lbar{gap:6px;padding:6px 8px}
+ .lbar .globe{font-size:.95rem}
+ .lbar select{padding:6px 26px 6px 11px;font-size:.82rem;max-width:120px}
+ .lbtn{padding:6px 11px;font-size:.8rem}
+ .rbtn{padding:6px 7px;font-size:.76rem;min-width:44px}
+}
 .lnotice{margin:0 0 10px;padding:9px 12px;border-left:3px solid var(--blue);background:#eef4fb;
  color:#34506b;font-size:.86rem;border-radius:0 8px 8px 0}
 body.lfade .wrap{opacity:.25;transition:opacity .16s}
 body .wrap{transition:opacity .16s}
+/* 朗读中的当前段落 */
+.ll-on{background:#fff3bf;box-shadow:0 0 0 4px #fff3bf;border-radius:3px}
+h1.ll-on,h2.ll-on,.hero .sub.ll-on,.hero p.ll-on{background:rgba(255,255,255,.24);box-shadow:none}
+table.kv tr.ll-on th,table.kv tr.ll-on td,table.sig tr.ll-on td{background:#fff3bf}
+table.kv tr.ll-on th:first-child{border-radius:4px 0 0 4px}
+table.kv tr.ll-on td:last-child{border-radius:0 4px 4px 0}
 
 </style>
 </head>
 <body>
-<div class="lbar"><span class="globe" aria-hidden="true">🌐</span><label class="sr" for="langsel" hidden>Language</label><select id="langsel" aria-label="Language"></select><button id="listenbtn" class="lbtn" type="button" aria-pressed="false"><span aria-hidden="true">🎧</span><span id="listenlbl">Listen to this page</span></button></div>
+<div class="lbar"><span class="globe" aria-hidden="true">🌐</span><label class="sr" for="langsel" hidden>Language</label><select id="langsel" aria-label="Language"></select><button id="listenbtn" class="lbtn" type="button" aria-pressed="false"><span aria-hidden="true">🎧</span><span id="listenlbl">Listen to this page</span></button><button id="ratebtn" class="rbtn" type="button" aria-label="Speech speed">0.75×</button></div>
 
 <div class="wrap">
 <header class="hero">
@@ -315,12 +332,22 @@ function switchLang(code){
   }, 140);
 }
 
-/* ---------- 朗读：设备自带 TTS，分块排队，避免长句被截断 ---------- */
+/* ---------- 朗读：设备自带 TTS，短句排队 + 句间停顿 + 逐段跟随 ---------- */
 var synth = window.speechSynthesis;
 var btn = document.getElementById("listenbtn");
 var lbl = document.getElementById("listenlbl");
-var state = "idle", queue = [], qi = 0, token = 0;
-var baseLbl = "Listen to this page";
+var state = "idle", queue = [], qi = 0, token = 0, lastNode = null, watch = null;
+/* 语速：三档，默认 0.75（偏慢，听得清）；?rate=0.9 可直接指定 */
+var RATES = [0.65, 0.75, 0.9, 1];
+var rateIdx = 1;
+var RATE = RATES[rateIdx];
+(function(){
+  var m = /[?&]rate=([0-9.]+)/.exec(window.location.search);
+  if (!m) return;
+  var r = parseFloat(m[1]), best = 0;
+  for (var i=0;i<RATES.length;i++){ if (Math.abs(RATES[i]-r) < Math.abs(RATES[best]-r)) best = i; }
+  rateIdx = best; RATE = RATES[rateIdx];
+})();
 
 function langLabel(){ return LANGS.map(function(x){return x[0];}).indexOf(cur) >= 0 ? cur : "en"; }
 
@@ -334,7 +361,8 @@ function pickVoice(code){
   return null;
 }
 
-function blocks(){
+/* 收集朗读单元：文本 + 对应节点（用于高亮与跟随滚动） */
+function units(){
   var root = document.querySelector(".wrap") || document.body;
   var sel = "h1, p.sub, h2.sec-h, h3.item-t, p.plain, p.lnotice, table.kv tr, table.sig tr, figcaption";
   var nodes = root.querySelectorAll(sel);
@@ -353,29 +381,83 @@ function blocks(){
     } else {
       t = norm(e.textContent);
     }
-    if (t) out.push(t);
+    if (t) out.push({ t: t, n: e });
   }
   return out;
 }
 
-function chunk(list){
+/* 按句切分：句号/问号/感叹号/分号/冒号，后接空格或结尾才切，避免切坏 7.2V 这类小数 */
+var SENT = ".!?;:。！？；：";
+function splitSent(s){
   var out = [], buf = "";
-  var push = function(s){ if (s) out.push(s); };
-  for (var i=0;i<list.length;i++){
-    var s = list[i];
-    if (s.length > 240){
-      var parts = s.match(/[^.!?]+[.!?]*/g) || [s];
-      for (var j=0;j<parts.length;j++){
-        if ((buf + " " + parts[j]).length > 240){ push(buf); buf = parts[j]; }
-        else { buf = buf ? buf + " " + parts[j] : parts[j]; }
+  for (var i=0;i<s.length;i++){
+    var ch = s.charAt(i);
+    buf += ch;
+    if (SENT.indexOf(ch) >= 0){
+      var nx = s.charAt(i+1);
+      if (!nx || nx === " " || nx === "\u00a0"){
+        if (buf.trim()) out.push(buf.trim());
+        buf = "";
       }
-      continue;
     }
-    if ((buf + " " + s).length > 240){ push(buf); buf = s; }
-    else { buf = buf ? buf + " " + s : s; }
   }
-  push(buf);
+  if (buf.trim()) out.push(buf.trim());
+  return out.length ? out : [s];
+}
+
+/* 合并成朗读块：每块 <=110 字符，条目之间也断开，保证语流清楚 */
+function chunk(list){
+  var MAX = 110, out = [], buf = "", node = null;
+  function push(){ if (buf){ out.push({ t: buf, n: node }); buf = ""; node = null; } }
+  for (var i=0;i<list.length;i++){
+    var u = list[i];
+    var parts = u.t.length > 80 ? splitSent(u.t) : [u.t];
+    for (var j=0;j<parts.length;j++){
+      var p = parts[j], guard = 0;
+      while (p.length > MAX && guard++ < 20){
+        if (buf) push();
+        /* 尽可在逗号或空格处断开，避免把单词/地址切成两半 */
+        var seg = p.slice(0, MAX);
+        var cut = Math.max(seg.lastIndexOf(" "), seg.lastIndexOf(", "), seg.lastIndexOf("; "));
+        if (cut < MAX * 0.55) cut = MAX;
+        out.push({ t: p.slice(0, cut).replace(/[\s,;]+$/, ""), n: u.n });
+        p = p.slice(cut).replace(/^[\s,;]+/, "");
+      }
+      if (!p) continue;
+      if (buf && (buf.length + p.length + 1) > MAX) push();
+      if (!buf) node = u.n;
+      buf = buf ? buf + " " + p : p;
+    }
+    push();
+  }
+  push();
   return out;
+}
+
+function clearMark(){
+  if (lastNode){ lastNode.classList.remove("ll-on"); lastNode = null; }
+}
+/* 用户自己滑动时，8 秒内不强行把页面拉回朗读位置 */
+var holdUntil = 0, selfScroll = false;
+window.addEventListener("scroll", function(){
+  if (selfScroll){ selfScroll = false; return; }
+  if (state === "playing") holdUntil = Date.now() + 8000;
+}, { passive: true });
+
+function mark(n){
+  if (!n) return;
+  if (lastNode === n) return;
+  clearMark();
+  lastNode = n;
+  n.classList.add("ll-on");
+  if (Date.now() < holdUntil) return;
+  var r = n.getBoundingClientRect();
+  var vh = window.innerHeight || 640;
+  if (r.top < 64 || r.bottom > vh - 60){
+    var y = (window.pageYOffset || document.documentElement.scrollTop) + r.top - 96;
+    selfScroll = true;
+    window.scrollTo(0, Math.max(0, y));
+  }
 }
 
 function setState(s){
@@ -384,55 +466,90 @@ function setState(s){
   btn.classList.toggle("loading", s === "loading");
   btn.setAttribute("aria-pressed", s === "playing" ? "true" : "false");
   var d = DICT[cur] || DICT.en;
-  lbl.textContent = s === "playing" ? (d.stop_t || "Stop")
-                  : s === "loading" ? (d.load_t || "Loading audio…")
-                  : (d.listen_t || "Listen to this page");
+  var base = s === "playing" ? (d.stop_t || "Stop")
+           : s === "loading" ? (d.load_t || "Loading audio…")
+           : (d.listen_t || "Listen to this page");
+  if (s === "playing" && queue.length > 1) base += " " + Math.min(qi, queue.length) + "/" + queue.length;
+  lbl.textContent = base;
 }
 
 function stopSpeech(){
   token++;
   queue = []; qi = 0;
+  if (watch){ clearInterval(watch); watch = null; }
   if (synth){ try { synth.cancel(); } catch(e){} }
+  clearMark();
   setState("idle");
+}
+
+/* 部分手机（iOS/微信）会在中途自行 pause，定时 resume 兜底 */
+function startWatch(){
+  if (watch) clearInterval(watch);
+  watch = setInterval(function(){
+    if (state !== "playing") return;
+    try { if (synth.paused) synth.resume(); } catch(e){}
+  }, 1500);
+}
+/* 切回页面时继续朗读 */
+document.addEventListener("visibilitychange", function(){
+  if (document.hidden || state !== "playing") return;
+  try { if (synth.paused) synth.resume(); } catch(e){}
+});
+
+function nextTick(my, gap){
+  if (my !== token) return;
+  window.setTimeout(function(){ if (my === token) speakNext(my); }, gap);
 }
 
 function speakNext(my){
   if (my !== token) return;
-  if (qi >= queue.length){ setState("idle"); return; }
-  var txt = queue[qi++];
-  var u = new SpeechSynthesisUtterance(txt);
+  if (qi >= queue.length){ stopSpeech(); return; }
+  var it = queue[qi++];
+  mark(it.n);
+  setState("playing");
+  var u = new SpeechSynthesisUtterance(it.t);
   var v = pickVoice(cur);
   if (v) u.voice = v;
   u.lang = VOICE[cur] || cur;
-  u.rate = 0.96;
-  u.onend = function(){
-    if (my !== token) return;
-    if (qi >= queue.length) setState("idle"); else speakNext(my);
+  u.rate = RATE; u.pitch = 1; u.volume = 1;
+  var done = false;
+  var fin = function(){
+    if (my !== token || done) return;
+    done = true;
+    /* 句间留停顿：短标签短停，完整句子稍长，听感更清楚 */
+    var gap = it.t.length < 16 ? 120 : (/[.!?。！？]$/.test(it.t) ? 260 : 180);
+    nextTick(my, gap);
   };
-  u.onerror = function(){ if (my === token) setState("idle"); };
-  try { synth.speak(u); } catch(e){ setState("idle"); }
+  u.onend = fin;
+  u.onerror = fin;
+  try { synth.speak(u); } catch(e){ stopSpeech(); }
 }
 
 if (!synth || typeof SpeechSynthesisUtterance === "undefined"){
   if (btn) btn.hidden = true;
+  var rb0 = document.getElementById("ratebtn");
+  if (rb0) rb0.hidden = true;
 } else {
   btn.addEventListener("click", function(){
     if (state === "playing" || state === "loading"){ stopSpeech(); return; }
     var my = ++token;
-    queue = chunk(blocks()); qi = 0;
+    queue = chunk(units()); qi = 0;
     setState("loading");
+    /* 从第一段读起：先把页面退回顶部 */
+    clearMark();
+    window.scrollTo(0, 0);
     /* 有些机型语音列表异步加载 */
+    var startNow = function(t){
+      if (t !== token) return;
+      try { synth.cancel(); } catch(e){}
+      startWatch();
+      speakNext(t);
+    };
     var go = function(){
       if (my !== token) return;
       if (!pickVoice(cur) && synth.getVoices().length === 0){
         window.setTimeout(function(){ startNow(my); }, 350);
       } else { startNow(my); }
-    };
-    var startNow = function(t){
-      if (t !== token) return;
-      setState("playing");
-      synth.cancel();
-      speakNext(t);
     };
     go();
   });
@@ -442,9 +559,23 @@ if (!synth || typeof SpeechSynthesisUtterance === "undefined"){
   }
 }
 
+/* ---------- 语速按钮 ---------- */
+var rbtn = document.getElementById("ratebtn");
+function paintRate(){ if (rbtn) rbtn.textContent = String(RATE) + "×"; }
+if (rbtn){
+  paintRate();
+  rbtn.addEventListener("click", function(){
+    rateIdx = (rateIdx + 1) % RATES.length;
+    RATE = RATES[rateIdx];
+    paintRate();
+    /* 正在朗读时，下一句起用新语速 */
+  });
+}
+
 /* ---------- 语言下拉 ---------- */
-window.__llDebug = { blocks: blocks, chunk: chunk, qlen: function(){ return queue.length; },
-                     state: function(){ return state; }, voices: function(){ return synth ? synth.getVoices().length : -1; } };
+window.__llDebug = { units: units, chunk: chunk, qlen: function(){ return queue.length; },
+                     state: function(){ return state; }, voices: function(){ return synth ? synth.getVoices().length : -1; },
+                     rate: function(){ return RATE; } };
 var sel = document.getElementById("langsel");
 for (var i=0;i<LANGS.length;i++){ sel.appendChild(new Option(LANGS[i][1], LANGS[i][0])); }
 sel.value = "en";
